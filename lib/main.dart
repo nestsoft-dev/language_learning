@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:language_learning/constant/constant.dart';
 import 'package:language_learning/presentation/pages/splash.dart';
 
 void main() {
@@ -18,9 +19,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Language Learning',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+          appBarTheme: AppBarTheme(foregroundColor: Colors.white),
+          scaffoldBackgroundColor: onBoardingBg),
       home: const SplashPage(),
     );
   }
