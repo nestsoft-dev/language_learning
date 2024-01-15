@@ -41,7 +41,7 @@ class _PasswordPageState extends State<PasswordPage> {
                 text: 'Choose a Passsword',
                 weight: FontWeight.w500,
                 color: Colors.white,
-                fontSize: 22),
+                fontSize: 22, alignment: TextAlign.center,),
             SizedBox(
               height: size.height * 0.05,
             ),

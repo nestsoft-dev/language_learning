@@ -40,10 +40,12 @@ class _LoginPageState extends State<LoginPage> {
               height: size.height * 0.02,
             ),
             const MyText(
-                text: 'For free, join now and \nstart learning',
-                weight: FontWeight.w500,
-                color: Colors.white,
-                fontSize: 22),
+              text: 'For free, join now and \nstart learning',
+              weight: FontWeight.w500,
+              color: Colors.white,
+              fontSize: 22,
+              alignment: TextAlign.center,
+            ),
             SizedBox(
               height: size.height * 0.05,
             ),

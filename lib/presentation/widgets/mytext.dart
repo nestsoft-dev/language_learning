@@ -7,19 +7,21 @@ class MyText extends StatelessWidget {
   final FontWeight weight;
   final Color color;
   final double fontSize;
+  final TextAlign alignment;
   const MyText({
     Key? key,
     required this.text,
     required this.weight,
     required this.color,
     required this.fontSize,
+    required this.alignment,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: TextAlign.center,
+      textAlign: alignment,
       style: GoogleFonts.fredoka(
           fontSize: fontSize, fontWeight: weight, color: color),
     );
