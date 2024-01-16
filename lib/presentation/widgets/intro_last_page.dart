@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language_learning/presentation/nav/nav.dart';
 import 'package:language_learning/presentation/screens/home.dart';
 import 'package:language_learning/presentation/widgets/buttons.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
@@ -45,7 +46,7 @@ class LastIntroPage extends StatelessWidget {
           Button(
               onTap: () {
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => const HomePage()));
+                    MaterialPageRoute(builder: (_) => const NavPage()));
               },
               text: 'Continue')
         ],

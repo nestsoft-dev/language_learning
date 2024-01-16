@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:language_learning/constant/constant.dart';
 import 'package:language_learning/presentation/widgets/course_card.dart';
 import 'package:language_learning/presentation/widgets/featured_courses.dart';
@@ -13,6 +16,43 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  BannerAd? _bannerAd;
+  bool _isLoaded = false;
+
+  final adUnitId = Platform.isAndroid
+      ? 'ca-app-pub-3940256099942544/6300978111'
+      : 'ca-app-pub-3940256099942544/2934735716';
+
+  void loadAd() {
+    _bannerAd = BannerAd(
+      adUnitId: adUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+          setState(() {
+            _isLoaded = true;
+          });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('BannerAd failed to load: $err');
+          // Dispose the ad here to free resources.
+          ad.dispose();
+        },
+      ),
+    )..load();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadAd();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -144,6 +184,16 @@ class _HomePageState extends State<HomePage> {
                 ]),
               ),
             ),
+            SizedBox(
+              height: size.height * 0.03,
+            ),
+            _isLoaded
+                ? SizedBox(
+                    width: 728,
+                    height: 90,
+                    child: AdWidget(ad: _bannerAd!),
+                  )
+                : const SizedBox.shrink(),
             SizedBox(
               height: size.height * 0.03,
             ),
