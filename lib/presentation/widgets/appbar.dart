@@ -7,10 +7,12 @@ import '../../constant/constant.dart';
 class MyAppBar extends StatelessWidget {
   void Function()? onPressed;
   final String text;
+  final Widget? lastChild;
   MyAppBar({
     Key? key,
     this.onPressed,
     required this.text,
+    this.lastChild,
   }) : super(key: key);
 
   @override
@@ -43,7 +45,7 @@ class MyAppBar extends StatelessWidget {
                       color: Colors.white,
                       fontWeight: FontWeight.w500),
                 ),
-                const SizedBox()
+                lastChild ?? const SizedBox()
               ],
             ),
           ),

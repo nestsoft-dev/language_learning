@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:language_learning/constant/constant.dart';
+import 'package:language_learning/presentation/screens/subscription_plan.dart';
 import 'package:language_learning/presentation/widgets/course_card.dart';
 import 'package:language_learning/presentation/widgets/featured_courses.dart';
 import 'package:language_learning/presentation/widgets/home_appbar.dart';
@@ -136,7 +137,12 @@ class _HomePageState extends State<HomePage> {
                 height: size.height * 0.18,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, index) => FeaturedCoursesCard()),
+                    itemBuilder: (_, index) => GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => const SubscriptionPlan()));
+                        },
+                        child: FeaturedCoursesCard())),
               ),
             ),
             SizedBox(

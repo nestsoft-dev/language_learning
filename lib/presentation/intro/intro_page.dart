@@ -88,6 +88,7 @@ class _IntroPageState extends State<IntroPage> {
                             duration: const Duration(microseconds: 300),
                             curve: Curves.linear);
                       }
+                      Navigator.of(context).pop();
                     },
                     text: 'Completed ${indexPage + 1}/8'),
                 Padding(

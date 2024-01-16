@@ -48,7 +48,7 @@ class _NavPageState extends State<NavPage> {
                 ),
                 GButton(
                   icon: Iconsax.check,
-                  text: 'Checks',
+                  text: 'Tasks',
                 ),
                 GButton(
                   icon: Iconsax.status,
