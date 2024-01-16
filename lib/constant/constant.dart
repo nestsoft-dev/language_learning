@@ -5,6 +5,8 @@ const onBoardingBg = Color(0xFFF080E1E);
 const onBoardingButton = Color(0xfff5b7bfe);
 const appBarColor = Color(0xfff410FA3);
 const textInputColor = Color(0xfff1B2336);
+const textInputColorShade = Color.fromARGB(255, 31, 41, 63);
+const timerColor = Color.fromARGB(255, 0, 181, 79);
 
 List<Map<String, String>> onBoardingList = [
   {
