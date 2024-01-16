@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:language_learning/constant/constant.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
 
@@ -21,26 +20,33 @@ class ActivityCaard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(
-              'assets/italy.png',
-              height: 30,
-              width: 30,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
-                MyText(
-                    text: 'Total hours',
-                    weight: FontWeight.w300,
-                    color: Colors.grey,
-                    fontSize: 15,
-                    alignment: TextAlign.center),
-                MyText(
-                    text: '8h:20 min',
-                    weight: FontWeight.w600,
-                    color: Colors.white,
-                    fontSize: 14,
-                    alignment: TextAlign.start),
+                Image.asset(
+                  'assets/italy.png',
+                  height: 30,
+                  width: 30,
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MyText(
+                        text: 'Total hours',
+                        weight: FontWeight.w300,
+                        color: Colors.grey,
+                        fontSize: 15,
+                        alignment: TextAlign.center),
+                    MyText(
+                        text: '8h:20 min',
+                        weight: FontWeight.w600,
+                        color: Colors.white,
+                        fontSize: 14,
+                        alignment: TextAlign.start),
+                  ],
+                ),
               ],
             ),
             Container(

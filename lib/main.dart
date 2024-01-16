@@ -6,6 +6,9 @@ import 'package:language_learning/presentation/pages/splash.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
+      testDeviceIds: ['0A413C505EF6CC4FF6776519C618B75D']));
+
   runApp(const MyApp());
 }
 

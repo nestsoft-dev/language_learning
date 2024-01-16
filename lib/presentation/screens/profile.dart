@@ -2,6 +2,7 @@ import 'package:dotted_dashed_line/dotted_dashed_line.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:language_learning/constant/constant.dart';
+import 'package:language_learning/presentation/screens/settings_page.dart';
 import 'package:language_learning/presentation/widgets/activity_card.dart';
 import 'package:language_learning/presentation/widgets/appbar.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
@@ -21,8 +22,11 @@ class ProfilePage extends StatelessWidget {
               lastChild: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const SettingsPage()));
+                  },
+                  child: const Icon(
                     Iconsax.setting,
                     color: Colors.white,
                     size: 20,
@@ -33,7 +37,7 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: size.height * 0.05,
             ),
-            MyText(
+            const MyText(
                 text: 'Ikenna Obetta',
                 weight: FontWeight.w600,
                 color: Colors.white,
@@ -42,7 +46,7 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: size.height * 0.003,
             ),
-            MyText(
+            const MyText(
                 text: 'Joined March 2023',
                 weight: FontWeight.w300,
                 color: Colors.grey,
@@ -56,9 +60,9 @@ class ProfilePage extends StatelessWidget {
               width: size.width * 0.50,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: Color.fromARGB(59, 91, 124, 254),
+                  color: const Color.fromARGB(59, 91, 124, 254),
                   border: Border.all(color: onBoardingButton, width: 1)),
-              child: Center(
+              child: const Center(
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -68,7 +72,7 @@ class ProfilePage extends StatelessWidget {
                       color: onBoardingButton,
                       fontSize: 15,
                       alignment: TextAlign.center),
-                  const SizedBox(
+                  SizedBox(
                     width: 15,
                   ),
                   Icon(

@@ -8,11 +8,13 @@ class MyAppBar extends StatelessWidget {
   void Function()? onPressed;
   final String text;
   final Widget? lastChild;
+  final Widget? middleChild;
   MyAppBar({
     Key? key,
     this.onPressed,
     required this.text,
     this.lastChild,
+    this.middleChild,
   }) : super(key: key);
 
   @override
@@ -37,15 +39,19 @@ class MyAppBar extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.fredoka(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500),
-                ),
-                lastChild ?? const SizedBox()
+                middleChild ??
+                    Text(
+                      text,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.fredoka(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500),
+                    ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: lastChild ?? const SizedBox(),
+                )
               ],
             ),
           ),

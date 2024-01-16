@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:language_learning/constant/ads_const.dart';
 import 'package:language_learning/constant/constant.dart';
+import 'package:language_learning/presentation/pages/learning_page.dart';
 import 'package:language_learning/presentation/screens/subscription_plan.dart';
 import 'package:language_learning/presentation/widgets/course_card.dart';
 import 'package:language_learning/presentation/widgets/featured_courses.dart';
@@ -20,13 +22,9 @@ class _HomePageState extends State<HomePage> {
   BannerAd? _bannerAd;
   bool _isLoaded = false;
 
-  final adUnitId = Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/6300978111'
-      : 'ca-app-pub-3940256099942544/2934735716';
-
   void loadAd() {
     _bannerAd = BannerAd(
-      adUnitId: adUnitId,
+      adUnitId: bannerUnit,
       request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
@@ -61,7 +59,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            HomeAppBar(),
+            const HomeAppBar(),
             SizedBox(
               height: size.height * 0.05,
             ),
@@ -96,8 +94,14 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (_, index) => Padding(
                           padding: const EdgeInsets.only(right: 10),
-                          child: CourseCard(
-                            color: index == 0 ? onBoardingButton : null,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => const LearningPage()));
+                            },
+                            child: CourseCard(
+                              color: index == 0 ? onBoardingButton : null,
+                            ),
                           ),
                         )),
               ),

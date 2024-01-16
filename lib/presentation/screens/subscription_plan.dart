@@ -21,29 +21,32 @@ class _SubscriptionPlanState extends State<SubscriptionPlan> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Column(
-            children: [
-              MyAppBar(
-                text: 'Subscription',
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              MyText(
+        child: Column(
+          children: [
+            MyAppBar(
+              text: 'Subscription',
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: MyText(
                   text: 'To continue,please select \na subscription',
                   weight: FontWeight.w500,
                   color: Colors.white,
                   fontSize: 20,
                   alignment: TextAlign.center),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              const Row(
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
                 children: [
                   Icon(
                     Icons.check_box_rounded,
@@ -61,10 +64,13 @@ class _SubscriptionPlanState extends State<SubscriptionPlan> {
                       alignment: TextAlign.start),
                 ],
               ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              const Row(
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
                 children: [
                   Icon(
                     Icons.check_box_rounded,
@@ -82,31 +88,34 @@ class _SubscriptionPlanState extends State<SubscriptionPlan> {
                       alignment: TextAlign.start),
                 ],
               ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              // const Row(
-              //   children: [
-              //     Icon(
-              //       Icons.check_box_rounded,
-              //       color: onBoardingButton,
-              //     ),
-              //     SizedBox(
-              //       width: 10,
-              //     ),
-              //     MyText(
-              //         text:
-              //             'There are hundred lessons from beginner to\n advance',
-              //         weight: FontWeight.w300,
-              //         color: Colors.grey,
-              //         fontSize: 13,
-              //         alignment: TextAlign.start),
-              //   ],
-              // ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-              SizedBox(
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            // const Row(
+            //   children: [
+            //     Icon(
+            //       Icons.check_box_rounded,
+            //       color: onBoardingButton,
+            //     ),
+            //     SizedBox(
+            //       width: 10,
+            //     ),
+            //     MyText(
+            //         text:
+            //             'There are hundred lessons from beginner to\n advance',
+            //         weight: FontWeight.w300,
+            //         color: Colors.grey,
+            //         fontSize: 13,
+            //         alignment: TextAlign.start),
+            //   ],
+            // ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: SizedBox(
                   height: size.height * 0.65,
                   child: Stack(
                     children: [
@@ -138,11 +147,11 @@ class _SubscriptionPlanState extends State<SubscriptionPlan> {
                           : const SizedBox.shrink()
                     ],
                   )),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+          ],
         ),
       ),
     );

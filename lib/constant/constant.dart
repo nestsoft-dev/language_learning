@@ -33,7 +33,6 @@ List<Map<String, String>> intro_one_language = [
   {'flag': 'assets/france.png', 'lang': 'French', 'lan_code': 'fr'},
   {'flag': 'assets/german.png', 'lang': 'German', 'lan_code': 'gr'},
   {'flag': 'assets/hindi.png', 'lang': 'Hindi', 'lan_code': 'hi'},
-  {'flag': 'assets/england.png', 'lang': 'English', 'lan_code': 'en'},
   {'flag': 'assets/south-korea.png', 'lang': 'Korean', 'lan_code': 'kr'},
   {'flag': 'assets/bengali.png', 'lang': 'Bengali', 'lan_code': 'bl'},
   {'flag': 'assets/italy.png', 'lang': 'Italian', 'lan_code': 'it'},
@@ -140,7 +139,6 @@ List<Map<String, String>> intro_five_time = [
   },
 ];
 
-
 List<Map<String, String>> intro_six_hearabtus = [
   {
     'flag': 'assets/england.png',
@@ -161,9 +159,9 @@ List<Map<String, String>> intro_six_hearabtus = [
   {
     'flag': 'assets/german.png',
     'lang': 'Podcast',
-  },{
+  },
+  {
     'flag': 'assets/german.png',
     'lang': 'Website Ads',
   },
 ];
-

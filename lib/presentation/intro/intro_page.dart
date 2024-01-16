@@ -34,6 +34,7 @@ class _IntroPageState extends State<IntroPage> {
     if (index == 0) {
       ///   setState(() {
       getList = intro_one_language;
+
       //   });
       return intro_one_language.length;
     } else if (index == 1) {
@@ -87,8 +88,9 @@ class _IntroPageState extends State<IntroPage> {
                         _pageController.animateToPage(indexPage - 1,
                             duration: const Duration(microseconds: 300),
                             curve: Curves.linear);
+                      } else {
+                        Navigator.of(context).pop();
                       }
-                      Navigator.of(context).pop();
                     },
                     text: 'Completed ${indexPage + 1}/8'),
                 Padding(
@@ -149,13 +151,16 @@ class _IntroPageState extends State<IntroPage> {
                                                             !_isSelected;
                                                         _selectedIndex = index;
                                                       });
-                                                      if (index == 0) {
+                                                      if (indexPage == 0) {
                                                         setState(() {
                                                           selectedLang =
-                                                              getList[index]
+                                                              intro_one_language[
+                                                                      _selectedIndex!]
                                                                   ['lang'];
                                                         });
                                                       }
+                                                      print(
+                                                          'Selected Lan is $selectedLang and index is .......$_selectedIndex');
                                                     },
                                                     child: IntroListCard(
                                                         color: _selectedIndex ==
