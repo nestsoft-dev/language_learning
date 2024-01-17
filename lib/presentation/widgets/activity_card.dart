@@ -23,7 +23,7 @@ class ActivityCaard extends StatelessWidget {
             Row(
               children: [
                 Image.asset(
-                  'assets/italy.png',
+                  'assets/clock.png',
                   height: 30,
                   width: 30,
                 ),

@@ -49,119 +49,119 @@ List<String> headText = [
 
 List<Map<String, String>> intro_two_reason = [
   {
-    'flag': 'assets/england.png',
+    'flag': 'assets/travel.png',
     'lang': 'Travel',
   },
   {
-    'flag': 'assets/france.png',
+    'flag': 'assets/school.png',
     'lang': 'School',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/working.png',
     'lang': 'Work',
   },
   {
-    'flag': 'assets/hindi.png',
+    'flag': 'assets/family.png',
     'lang': 'Family/Friends',
   },
   {
-    'flag': 'assets/england.png',
+    'flag': 'assets/skill_improve.png',
     'lang': 'Skill Improvements',
   },
   {
-    'flag': 'assets/south-korea.png',
+    'flag': 'assets/others.png',
     'lang': 'Others',
   },
 ];
 
 List<Map<String, String>> intro_three_knowledge = [
   {
-    'flag': 'assets/england.png',
+    'flag': 'assets/level.png',
     'lang': 'Not Much',
   },
   {
-    'flag': 'assets/france.png',
+    'flag': 'assets/level.png',
     'lang': 'Medium',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/level.png',
     'lang': 'Expert',
   },
 ];
 
 List<Map<String, String>> intro_four_age = [
   {
-    'flag': 'assets/england.png',
+    'flag': 'assets/age.png',
     'lang': 'Under 18',
   },
   {
-    'flag': 'assets/france.png',
+    'flag': 'assets/age.png',
     'lang': '18-24',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/age.png',
     'lang': '25-34',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/age.png',
     'lang': '35-44',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/age.png',
     'lang': '45-54',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/age.png',
     'lang': '55-64',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/age.png',
     'lang': '65 or older',
   },
 ];
 
 List<Map<String, String>> intro_five_time = [
   {
-    'flag': 'assets/england.png',
+    'flag': 'assets/clock.png',
     'lang': '5min/Day',
   },
   {
-    'flag': 'assets/france.png',
+    'flag': 'assets/clock.png',
     'lang': '15min/Day',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/clock.png',
     'lang': '30min/Day',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/clock.png',
     'lang': '60min/Day',
   },
 ];
 
 List<Map<String, String>> intro_six_hearabtus = [
   {
-    'flag': 'assets/england.png',
+    'flag': 'assets/family.png',
     'lang': 'Friends/Family',
   },
   {
-    'flag': 'assets/france.png',
+    'flag': 'assets/playstore.png',
     'lang': 'Play store',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/youtube.png',
     'lang': 'Youtube',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/tv.png',
     'lang': 'Tv',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/podcast.png',
     'lang': 'Podcast',
   },
   {
-    'flag': 'assets/german.png',
+    'flag': 'assets/website.png',
     'lang': 'Website Ads',
   },
 ];

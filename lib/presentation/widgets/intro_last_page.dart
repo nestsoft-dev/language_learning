@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:language_learning/presentation/nav/nav.dart';
-import 'package:language_learning/presentation/screens/home.dart';
+
 import 'package:language_learning/presentation/widgets/buttons.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
-import 'package:language_learning/presentation/widgets/textinput.dart';
+
 
 class LastIntroPage extends StatelessWidget {
   const LastIntroPage({super.key});
@@ -20,7 +20,10 @@ class LastIntroPage extends StatelessWidget {
           ),
           SizedBox(
             height: size.height * 0.45,
-            child: const Placeholder(),
+            child: Image.asset(
+              'assets/congratulation.png',
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(
             height: 25,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:language_learning/presentation/auth/login.dart';
 import 'package:language_learning/presentation/auth/register.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -112,7 +113,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                           GoogleFonts.fredoka(fontSize: 18, color: Colors.grey),
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (_) => const LoginPage())),
                         child: Text(
                           'Log in',
                           style: GoogleFonts.fredoka(

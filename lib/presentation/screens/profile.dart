@@ -179,7 +179,7 @@ class ProfilePage extends StatelessWidget {
                   child: Column(children: [
                     CircleAvatar(
                       backgroundColor: textInputColor.withOpacity(0.2),
-                      backgroundImage: AssetImage('assets/login.png'),
+                      backgroundImage: AssetImage('assets/word.png'),
                     ),
                     const SizedBox(
                       height: 20,
@@ -210,7 +210,7 @@ class ProfilePage extends StatelessWidget {
                   child: Column(children: [
                     CircleAvatar(
                       backgroundColor: textInputColor.withOpacity(0.2),
-                      backgroundImage: AssetImage('assets/login.png'),
+                      backgroundImage: AssetImage('assets/sentences.png'),
                     ),
                     const SizedBox(
                       height: 20,

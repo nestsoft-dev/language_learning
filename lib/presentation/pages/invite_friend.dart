@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:language_learning/data/utils/functions.dart';
 import 'package:language_learning/presentation/widgets/appbar.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
 
@@ -30,7 +31,10 @@ class InviteFriendPage extends StatelessWidget {
               children: [
                 SizedBox(
                   height: size.height * 0.25,
-                  child: const Placeholder(),
+                  child: Image.asset(
+                    'assets/invite.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(
                   height: size.height * 0.04,
@@ -57,7 +61,7 @@ class InviteFriendPage extends StatelessWidget {
                   children: [
                     //whatsBut
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => shareInvite(),
                       child: Container(
                           height: 60,
                           width: MediaQuery.of(context).size.width,
@@ -89,7 +93,7 @@ class InviteFriendPage extends StatelessWidget {
 
                     //text
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => shareInvite(),
                       child: Container(
                           height: 60,
                           width: MediaQuery.of(context).size.width,
@@ -121,7 +125,7 @@ class InviteFriendPage extends StatelessWidget {
 
                     //share but
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => shareInvite(),
                       child: Container(
                           height: 60,
                           width: MediaQuery.of(context).size.width,

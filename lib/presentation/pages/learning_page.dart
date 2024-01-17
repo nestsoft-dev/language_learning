@@ -1,10 +1,15 @@
+import 'package:dotted_dashed_line/dotted_dashed_line.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:language_learning/constant/constant.dart';
 import 'package:language_learning/presentation/widgets/appbar.dart';
 import 'package:language_learning/presentation/widgets/buttons.dart';
+import 'package:language_learning/presentation/widgets/linear_question.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
+
+import '../widgets/learning_optionbox.dart';
 
 class LearningPage extends StatefulWidget {
   const LearningPage({super.key});
@@ -24,88 +29,65 @@ class _LearningPageState extends State<LearningPage> {
       super.dispose();
     }
 
-    int _pageIndex = 0;
+    double perval = 0.0;
+    double calculatePercent(int page) {
+      perval = page / 1000 * 30;
+
+      return perval;
+    }
 
     return Scaffold(
       body: Column(
         children: [
-          _pageIndex == 0
-              ? MyAppBar(
-                  text: '',
-                  middleChild: SizedBox(),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  lastChild: GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.close,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              : MyAppBar(
-                  text: '',
-                  middleChild: Column(
-                    children: [
-                      SimpleCircularProgressBar(
-                        size: 100,
-                        backColor: textInputColorShade,
-                        // valueNotifier: valueNotifier,
-                        mergeMode: true,
-                        onGetText: (value) {
-                          return Text(
-                            '${value.toInt()}/30',
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  lastChild: GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Icon(
-                      Icons.close,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-          SizedBox(
-            height: size.height * 0.1,
-          ),
           Expanded(
             child: PageView.builder(
                 onPageChanged: (index) {
+                  print('New Page');
                   setState(() {
-                    _pageIndex = index;
+                    calculatePercent(index);
                   });
                 },
+                itemCount: 31,
                 physics: const NeverScrollableScrollPhysics(),
                 controller: _pageController,
                 itemBuilder: (_, index) {
                   return index > 0
-                      ? SizedBox()
+                      ? LinearQuestionWidget(
+                          controller: _pageController,
+                          percentVal: calculatePercent(index),
+                          pageNum: index,
+                        )
                       : ListView(
                           children: [
+                            MyAppBar(
+                              text: '',
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              lastChild: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Icon(
+                                  Icons.close,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 25),
                               child: Column(
                                 children: [
                                   SizedBox(
+                                    height: size.height * 0.05,
+                                  ),
+                                  SizedBox(
                                     height: size.height * 0.3,
-                                    child: const Placeholder(),
+                                    child: Image.asset(
+                                      'assets/translator.png',
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                   SizedBox(
                                     height: size.height * 0.05,
@@ -119,9 +101,9 @@ class _LearningPageState extends State<LearningPage> {
                                   SizedBox(
                                     height: size.height * 0.002,
                                   ),
-                                  MyText(
+                                  const MyText(
                                       text:
-                                          'Hear it loud and clear; tirn up the\nvolume or use headphones',
+                                          'Hear it loud and clear; turn up the\nvolume or use headphones',
                                       weight: FontWeight.w200,
                                       color: Colors.grey,
                                       fontSize: 16,
