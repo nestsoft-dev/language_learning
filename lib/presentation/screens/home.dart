@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:language_learning/constant/constant.dart';
+import 'package:language_learning/data/utils/functions.dart';
 import 'package:language_learning/presentation/pages/learning_page.dart';
 import 'package:language_learning/presentation/screens/subscription_plan.dart';
 import 'package:language_learning/presentation/widgets/course_card.dart';
@@ -7,7 +8,6 @@ import 'package:language_learning/presentation/widgets/featured_courses.dart';
 import 'package:language_learning/presentation/widgets/home_appbar.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
 
-import 'grammer_quiz.dart';
 import 'set_weekly_goal.dart';
 
 class HomePage extends StatefulWidget {
@@ -111,13 +111,15 @@ class _HomePageState extends State<HomePage> {
               child: SizedBox(
                 height: size.height * 0.18,
                 child: ListView.builder(
+                    itemCount: featureList.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (_, index) => GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => const GrammerQuiz()));
-                        },
-                        child: const FeaturedCoursesCard())),
+                        onTap: () => featureCardNav(context, index),
+                        child: FeaturedCoursesCard(
+                          subtitle: featureList[index]['description']!,
+                          title: featureList[index]['title']!,
+                          imagePath: featureList[index]['image']!,
+                        ))),
               ),
             ),
             SizedBox(

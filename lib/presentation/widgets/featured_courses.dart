@@ -3,7 +3,14 @@ import 'package:language_learning/constant/constant.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
 
 class FeaturedCoursesCard extends StatelessWidget {
-  const FeaturedCoursesCard({super.key});
+  final String title;
+  final String subtitle;
+  final String imagePath;
+  const FeaturedCoursesCard(
+      {super.key,
+      required this.title,
+      required this.subtitle,
+      required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +29,17 @@ class FeaturedCoursesCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MyText(
-                        text: 'Grammar\nQuiz',
+                        text: title,
                         weight: FontWeight.w500,
                         color: Colors.white,
                         fontSize: 19,
                         alignment: TextAlign.start),
                     MyText(
-                        text: 'Master desired\nlanguage',
+                        text: subtitle,
                         weight: FontWeight.w500,
                         color: Colors.grey,
                         fontSize: 14,
@@ -40,17 +47,17 @@ class FeaturedCoursesCard extends StatelessWidget {
                   ],
                 ),
                 Image.asset(
-                  'assets/onboarding_two.png',
+                  imagePath,
                   height: size.height * 0.1,
                   width: size.width * 0.15,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 )
               ],
             ),
             SizedBox(
               height: size.height * 0.01,
             ),
-            Row(
+            const Row(
               children: [
                 Icon(
                   Icons.timer,

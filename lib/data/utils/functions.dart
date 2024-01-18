@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:language_learning/presentation/screens/grammer_quiz.dart';
+import 'package:language_learning/presentation/screens/guess_meaning.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
+
+import '../../presentation/screens/essay_page.dart';
+import '../../presentation/screens/writing_page.dart';
 
 // import 'package:text_to_speech/text_to_speech.dart';
 
@@ -16,6 +21,28 @@ void readToUser(String text, String? langCode) async {
   // String language = langCode ?? 'en-US';
   // tts.setLanguage(language);
   // await tts.speak(text);
+}
+
+void featureCardNav(BuildContext context, index) {
+  switch (index) {
+    case 0:
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => const GrammerQuiz()));
+      break;
+    case 1:
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => const EassyPage()));
+      break;
+    case 2:
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => const WritingQuiz()));
+      break;
+        case 3:
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => const GuessTheMeaning()));
+      break;
+    default:
+  }
 }
 
 learningBottomSnack(BuildContext context, Color backgroundColor,

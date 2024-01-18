@@ -185,5 +185,25 @@ List<Map<String, String>> goalCardOne = [
 ];
 
 List<String> goalCardTwo = [
-  '1-3 Months', '3-6 Months', '6-12 Months', 'More than 12 Months',
+  '1-3 Months',
+  '3-6 Months',
+  '6-12 Months',
+  'More than 12 Months',
+];
+
+List<Map<String, String>> featureList = [
+  {'title': 'Grammar\nQuiz', 'description': 'Master desired\nlanguage','image':'assets/onboarding_two.png'},
+  {'title': 'Essay\nQuiz', 'description': 'Master desired by\nwriting eassay'
+  
+  ,
+  'image':'assets/grammar_writing.png'},
+  {'title': 'Writing\nQuiz', 'description': 'Master desired\nlanguage writing',
+  'image':'assets/writing.png'
+  },
+  {
+    'title': 'Guessing\nQuiz',
+    'description': 'Master desired\nlanguage model items'
+    ,
+  'image':'assets/teacher.png'
+  },
 ];
