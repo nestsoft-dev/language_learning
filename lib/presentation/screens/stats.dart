@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:language_learning/bar%20graph/bar_graph.dart';
 import 'package:language_learning/constant/constant.dart';
 import 'package:language_learning/presentation/widgets/appbar.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
@@ -12,6 +13,7 @@ class StatsPage extends StatefulWidget {
 }
 
 class _StatsPageState extends State<StatsPage> {
+  List<double> weeklySummary = [4.0, 2.50, 42.42, 10.50, 100.20, 88.99, 90.10];
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -44,7 +46,7 @@ class _StatsPageState extends State<StatsPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: onBoardingButton),
-                    color: Color.fromARGB(82, 61, 99, 250),
+                    color: const Color.fromARGB(82, 61, 99, 250),
                   ),
                   child: Center(
                     child: DropdownButton(
@@ -77,41 +79,75 @@ class _StatsPageState extends State<StatsPage> {
                     ),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+                SizedBox(
+                  height: size.height * 0.08,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      for (var day in [
-                        'Mon',
-                        'Tue',
-                        'Wed',
-                        'Thu',
-                        'Fri',
-                        'Sat',
-                        'Sun'
-                      ])
-                        Column(
-                          children: [
-                            Container(
-                              height: day == 'Thu' ? 110 : 70,
-                              width: day == 'Thu' ? 15 : 8,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: day == 'Thu'
-                                    ? Colors.orange
-                                    : Colors.grey[400],
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(day),
-                          ],
+                      const MyText(
+                          text: 'Progress',
+                          weight: FontWeight.w400,
+                          color: Colors.white,
+                          fontSize: 18,
+                          alignment: TextAlign.start),
+                      Container(
+                        height: 47,
+                        padding: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: textInputColorShade),
+                            borderRadius: BorderRadius.circular(12)),
+                        child: const Center(
+                          child: MyText(
+                              text: 'This Week',
+                              weight: FontWeight.w300,
+                              color: Colors.grey,
+                              fontSize: 15,
+                              alignment: TextAlign.center),
                         ),
+                      )
                     ],
                   ),
+                ),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  height: size.height * 0.23,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: MyBarGraph(weeklySummary:weeklySummary,),
+                  //  Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     for (var day in [
+                  //       'Mon',
+                  //       'Tue',
+                  //       'Wed',
+                  //       'Thu',
+                  //       'Fri',
+                  //       'Sat',
+                  //       'Sun'
+                  //     ])
+                  //       Column(
+                  //         mainAxisAlignment: MainAxisAlignment.end,
+                  //         children: [
+                  //           Container(
+                  //             height: day == 'Thu' ? 110 : 70,
+                  //             width: day == 'Thu' ? 15 : 8,
+                  //             decoration: BoxDecoration(
+                  //               borderRadius: BorderRadius.circular(4),
+                  //               color: day == 'Thu'
+                  //                   ? Colors.orange
+                  //                   : Colors.grey[400],
+                  //             ),
+                  //           ),
+                  //           const SizedBox(height: 8),
+                  //           Text(day),
+                  //         ],
+                  //       ),
+                  //   ],
+                  // ),
                 ),
                 const MyText(
                     text: 'Completed Task',
@@ -133,7 +169,7 @@ class _StatsPageState extends State<StatsPage> {
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(width: 0.5, color: onBoardingButton)),
                   child: ListTile(
-                    leading: Icon(Icons.check_circle_outline),
+                    leading: const Icon(Icons.check_circle_outline),
                     title: Text('Lesson ${index + 1}'),
                     subtitle: const Text('Completed'),
                   ),

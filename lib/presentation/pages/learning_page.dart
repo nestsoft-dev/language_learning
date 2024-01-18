@@ -19,10 +19,7 @@ class LearningPage extends StatefulWidget {
 }
 
 class _LearningPageState extends State<LearningPage> {
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final _pageController = PageController(initialPage: 0);
+      final _pageController = PageController(initialPage: 0);
     @override
     void dispose() {
       _pageController.dispose();
@@ -36,13 +33,17 @@ class _LearningPageState extends State<LearningPage> {
       return perval;
     }
 
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Column(
         children: [
           Expanded(
             child: PageView.builder(
                 onPageChanged: (index) {
-                  print('New Page');
+                
                   setState(() {
                     calculatePercent(index);
                   });

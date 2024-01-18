@@ -32,13 +32,15 @@ class MyAppBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  onPressed: onPressed,
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new_sharp,
-                    color: Colors.white,
-                  ),
-                ),
+                onPressed == null
+                    ? const SizedBox()
+                    : IconButton(
+                        onPressed: onPressed,
+                        icon: const Icon(
+                          Icons.arrow_back_ios_new_sharp,
+                          color: Colors.white,
+                        ),
+                      ),
                 middleChild ??
                     Text(
                       text,

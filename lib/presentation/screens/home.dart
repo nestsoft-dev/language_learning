@@ -7,6 +7,8 @@ import 'package:language_learning/presentation/widgets/featured_courses.dart';
 import 'package:language_learning/presentation/widgets/home_appbar.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
 
+import 'grammer_quiz.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -112,9 +114,9 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (_, index) => GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => const SubscriptionPlan()));
+                              builder: (_) => const GrammerQuiz()));
                         },
-                        child: FeaturedCoursesCard())),
+                        child: const FeaturedCoursesCard())),
               ),
             ),
             SizedBox(

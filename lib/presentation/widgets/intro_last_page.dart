@@ -4,7 +4,6 @@ import 'package:language_learning/presentation/nav/nav.dart';
 import 'package:language_learning/presentation/widgets/buttons.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
 
-
 class LastIntroPage extends StatelessWidget {
   const LastIntroPage({super.key});
 
@@ -18,11 +17,14 @@ class LastIntroPage extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          SizedBox(
-            height: size.height * 0.45,
-            child: Image.asset(
-              'assets/congratulation.png',
-              fit: BoxFit.cover,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              height: size.height * 0.45,
+              child: Image.asset(
+                'assets/congratulation.png',
+                fit: BoxFit.contain,
+              ),
             ),
           ),
           const SizedBox(
@@ -44,7 +46,7 @@ class LastIntroPage extends StatelessWidget {
               fontSize: 16,
               alignment: TextAlign.center),
           SizedBox(
-            height: size.height * 0.15,
+            height: size.height * 0.1,
           ),
           Button(
               onTap: () {

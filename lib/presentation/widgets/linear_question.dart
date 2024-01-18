@@ -1,16 +1,18 @@
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:language_learning/data/utils/snack_bars.dart';
 import 'package:language_learning/presentation/widgets/buttons.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
 
 import '../../constant/constant.dart';
+
 import 'appbar.dart';
 import 'learning_optionbox.dart';
 import 'mytext.dart';
 
 class LinearQuestionWidget extends StatefulWidget {
-  LinearQuestionWidget(
+  const LinearQuestionWidget(
       {super.key,
       required this.controller,
       required this.percentVal,
@@ -29,8 +31,7 @@ class _LinearQuestionWidgetState extends State<LinearQuestionWidget> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
       children: [
         MyAppBar(
           text: '',
@@ -148,7 +149,7 @@ class _LinearQuestionWidgetState extends State<LinearQuestionWidget> {
         ),
         SizedBox(
           height: size.height * 0.1,
-          child: Center(
+          child: const Center(
             child: MyText(
                 text: 'This is the hint of what the image means',
                 weight: FontWeight.w200,
@@ -160,6 +161,8 @@ class _LinearQuestionWidgetState extends State<LinearQuestionWidget> {
         _selectedIndex != null
             ? Button(
                 onTap: () {
+                  normalSnack(
+                      context, 'Correct answer!', 'You have answer correctly');
                   widget.controller.nextPage(
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.linear);

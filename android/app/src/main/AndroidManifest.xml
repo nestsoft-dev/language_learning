@@ -31,11 +31,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-            <queries>  
-  <intent>  
-      <action android:name="android.intent.action.TTS_SERVICE" />  
-  </intent>  
- </queries>  
+            
+ 
  
         <!-- <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

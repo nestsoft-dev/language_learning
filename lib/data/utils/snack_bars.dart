@@ -71,6 +71,7 @@ void normalSnack(BuildContext context, String title, String message) {
   final materialBanner = MaterialBanner(
     /// need to set following properties for best effect of awesome_snackbar_content
     elevation: 0,
+
     backgroundColor: Colors.transparent,
     forceActionsBelow: true,
     content: AwesomeSnackbarContent(
