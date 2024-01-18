@@ -8,6 +8,7 @@ import 'package:language_learning/presentation/widgets/home_appbar.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
 
 import 'grammer_quiz.dart';
+import 'set_weekly_goal.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: SizedBox(
-                height: size.height * 0.28,
+                height: size.height * 0.29,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (_, index) => Padding(
@@ -124,44 +125,50 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Container(
-                height: size.height * 0.15,
-                width: size.width,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: textInputColor,
-                  borderRadius: BorderRadius.circular(30),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const SetWeeklyGoal()));
+                },
+                child: Container(
+                  height: size.height * 0.15,
+                  width: size.width,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: textInputColor,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: const Row(children: [
+                    CircleAvatar(
+                      backgroundColor: textInputColorShade,
+                      backgroundImage: AssetImage('assets/target.png'),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MyText(
+                            text: 'Set Weekly Goal!',
+                            weight: FontWeight.w500,
+                            color: Colors.white,
+                            fontSize: 20,
+                            alignment: TextAlign.start),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        MyText(
+                            text:
+                                'Who set a weekly goal are more\nlikely to stay motivated.',
+                            weight: FontWeight.w100,
+                            color: Colors.grey,
+                            fontSize: 14,
+                            alignment: TextAlign.start)
+                      ],
+                    )
+                  ]),
                 ),
-                child: const Row(children: [
-                  CircleAvatar(
-                    backgroundColor: textInputColorShade,
-                    backgroundImage: AssetImage('assets/target.png'),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MyText(
-                          text: 'Set Weekly Goal!',
-                          weight: FontWeight.w500,
-                          color: Colors.white,
-                          fontSize: 20,
-                          alignment: TextAlign.start),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      MyText(
-                          text:
-                              'Who set a weekly goal are more\nlikely to stay motivated.',
-                          weight: FontWeight.w100,
-                          color: Colors.grey,
-                          fontSize: 14,
-                          alignment: TextAlign.start)
-                    ],
-                  )
-                ]),
               ),
             ),
             // SizedBox(

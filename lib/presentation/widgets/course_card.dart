@@ -25,7 +25,7 @@ class _CourseCardState extends State<CourseCard> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.25,
+      height: size.height * 0.26,
       width: size.width * 0.42,
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(

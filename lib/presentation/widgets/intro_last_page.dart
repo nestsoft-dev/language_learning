@@ -20,7 +20,8 @@ class LastIntroPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              height: size.height * 0.45,
+              height: size.height * 0.42,
+              width: size.width * 0.7,
               child: Image.asset(
                 'assets/congratulation.png',
                 fit: BoxFit.contain,

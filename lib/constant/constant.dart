@@ -165,3 +165,25 @@ List<Map<String, String>> intro_six_hearabtus = [
     'lang': 'Website Ads',
   },
 ];
+
+List<Map<String, String>> goalCardOne = [
+  {
+    'title': 'Basic',
+    'message':
+        'Use familiar everyday expressions, such as\nintroductions, details about yourself and your\nfamily.'
+  },
+  {
+    'title': 'Independent',
+    'message':
+        'Understand the main points when\ncommunicating in everyday situatios and can\nshare your options.'
+  },
+  {
+    'title': 'Proficient',
+    'message':
+        'Communicate effectively and flexible in most\nsocial, academic and professional contexts and\nunderstand indirect meaning.'
+  },
+];
+
+List<String> goalCardTwo = [
+  '1-3 Months', '3-6 Months', '6-12 Months', 'More than 12 Months',
+];
