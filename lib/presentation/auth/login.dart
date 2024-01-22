@@ -1,8 +1,10 @@
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:language_learning/presentation/auth/register.dart';
-
+import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:language_learning/data/firebase/firebase_func.dart';
+import 'package:language_learning/data/utils/snack_bars.dart';
+import 'package:onepref/onepref.dart';
 import '../../constant/constant.dart';
 import '../widgets/appbar.dart';
 import '../widgets/buttons.dart';
@@ -19,6 +21,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _password = TextEditingController();
   final _emailaddress = TextEditingController();
+  bool _isLoading = false;
+ 
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -86,7 +91,34 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: size.height * 0.05,
             ),
-            Button(onTap: () {}, text: 'Login'),
+            _isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: orange,
+                    ),
+                  )
+                : Button(
+                    onTap: () async {
+                      if (_emailaddress.text.isEmpty ||
+                          _password.text.isEmpty) {
+                        errorSnack(
+                            context, 'Error', 'Please enter needed details.');
+                        return;
+                      } else {
+                        setState(() {
+                          _isLoading = true;
+                        });
+                        await FireBaseFunc()
+                            .loginUser(context, _emailaddress.text.trim(),
+                                _password.text.trim())
+                            .then((value) {
+                          setState(() {
+                            _isLoading = false;
+                          });
+                        });
+                      }
+                    },
+                    text: 'Login'),
             SizedBox(
               height: size.height * 0.05,
             ),

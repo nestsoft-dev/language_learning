@@ -3,7 +3,8 @@ import 'package:language_learning/constant/constant.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
 
 class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key});
+  final String firstname;
+  const HomeAppBar({super.key, required this.firstname});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +23,12 @@ class HomeAppBar extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundImage: AssetImage('assets/italy.png'),
                 ),
                 IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.notification_important_outlined,
                       color: Colors.white,
                     ))
@@ -36,19 +37,19 @@ class HomeAppBar extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Column(
+             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MyText(
-                    text: 'Hello, Ikenna',
+                    text: 'Hello, $firstname',
                     weight: FontWeight.w600,
                     color: Colors.white,
                     fontSize: 25,
                     alignment: TextAlign.start),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                MyText(
+                const MyText(
                     text: 'What who you like to learn today?',
                     weight: FontWeight.w100,
                     color: Colors.grey,

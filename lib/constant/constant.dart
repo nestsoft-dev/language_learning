@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+const String weekly = 'weekly_sub';
+const String monthly = 'monthly_sub';
+const String threemonths = 'three_months';
+
+const String courseNum = 'Num';
 const orange = Colors.orange;
 const onBoardingBg = Color(0xFFF080E1E);
 const onBoardingButton = Color(0xfff5b7bfe);
@@ -192,18 +197,24 @@ List<String> goalCardTwo = [
 ];
 
 List<Map<String, String>> featureList = [
-  {'title': 'Grammar\nQuiz', 'description': 'Master desired\nlanguage','image':'assets/onboarding_two.png'},
-  {'title': 'Essay\nQuiz', 'description': 'Master desired by\nwriting eassay'
-  
-  ,
-  'image':'assets/grammar_writing.png'},
-  {'title': 'Writing\nQuiz', 'description': 'Master desired\nlanguage writing',
-  'image':'assets/writing.png'
+  {
+    'title': 'Grammar\nQuiz',
+    'description': 'Master desired\nlanguage',
+    'image': 'assets/onboarding_two.png'
+  },
+  {
+    'title': 'Essay\nQuiz',
+    'description': 'Master desired by\nwriting eassay',
+    'image': 'assets/grammar_writing.png'
+  },
+  {
+    'title': 'Writing\nQuiz',
+    'description': 'Master desired\nlanguage writing',
+    'image': 'assets/writing.png'
   },
   {
     'title': 'Guessing\nQuiz',
-    'description': 'Master desired\nlanguage model items'
-    ,
-  'image':'assets/teacher.png'
+    'description': 'Master desired\nlanguage model items',
+    'image': 'assets/teacher.png'
   },
 ];

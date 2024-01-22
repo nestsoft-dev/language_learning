@@ -3,7 +3,8 @@ import 'package:language_learning/constant/constant.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
 
 class ActivityCaard extends StatelessWidget {
-  const ActivityCaard({super.key});
+  const ActivityCaard({super.key, required this.time});
+  final String time;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class ActivityCaard extends StatelessWidget {
                 const SizedBox(
                   width: 15,
                 ),
-                const Column(
+                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MyText(
@@ -40,7 +41,7 @@ class ActivityCaard extends StatelessWidget {
                         fontSize: 15,
                         alignment: TextAlign.center),
                     MyText(
-                        text: '8h:20 min',
+                        text: time,
                         weight: FontWeight.w600,
                         color: Colors.white,
                         fontSize: 14,

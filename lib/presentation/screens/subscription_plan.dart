@@ -1,9 +1,14 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:language_learning/constant/constant.dart';
 import 'package:language_learning/presentation/widgets/appbar.dart';
 import 'package:language_learning/presentation/widgets/buttons.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
-
+import 'package:onepref/onepref.dart';
+import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import '../widgets/plans_card.dart';
 
 class SubscriptionPlan extends StatefulWidget {
@@ -16,6 +21,91 @@ class SubscriptionPlan extends StatefulWidget {
 class _SubscriptionPlanState extends State<SubscriptionPlan> {
   bool _selected = false;
   int? _selectedIndex;
+  
+  final _iapEngine = IApEngine();
+
+  //lsit of products
+  List<ProductId> _productIds = [
+    ProductId(id: weekly, isConsumable: false),
+    ProductId(id: monthly, isConsumable: false),
+    ProductId(id: threemonths, isConsumable: false),
+  ];
+
+  List<ProductDetails> _products = [];
+
+  //iap
+
+  //bool
+  bool _isSubscribe = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getProducts();
+    _iapEngine.inAppPurchase.purchaseStream.listen((event) {
+      listenPurchase(event);
+    });
+  }
+
+  Future<void> listenPurchase(List<PurchaseDetails> list) async {
+    if (list.isNotEmpty) {
+      for (PurchaseDetails purchaseDetails in list) {
+        if (purchaseDetails.status == PurchaseStatus.restored ||
+            purchaseDetails.status == PurchaseStatus.purchased) {
+          Map purchaseData = jsonDecode(
+              purchaseDetails.verificationData.localVerificationData);
+          if (purchaseData['acknowledged']) {
+            setState(() {
+              OnePref.setPremium(_isSubscribe);
+              _isSubscribe = true;
+            });
+          } else {
+            if (Platform.isAndroid) {
+              final InAppPurchaseAndroidPlatformAddition
+                  androidPlatformAddition =
+                  _iapEngine.inAppPurchase.getPlatformAddition();
+              await androidPlatformAddition
+                  .consumePurchase(purchaseDetails)
+                  .then((value) {
+                setState(() {
+                  _isSubscribe = true;
+                  OnePref.setPremium(_isSubscribe);
+                });
+              });
+            }
+            if (purchaseDetails.pendingCompletePurchase) {
+              await _iapEngine.inAppPurchase
+                  .completePurchase(purchaseDetails)
+                  .then((value) {
+                setState(() {
+                  _isSubscribe = true;
+                  OnePref.setPremium(_isSubscribe);
+                });
+              });
+            }
+          }
+        }
+      }
+    } else {
+      setState(() {
+        _isSubscribe = false;
+        OnePref.setPremium(_isSubscribe);
+      });
+    }
+  }
+
+  getProducts() async {
+    await _iapEngine.getIsAvailable().then((value) async {
+      if (value) {
+        await _iapEngine.queryProducts(_productIds).then((res) {
+          setState(() {
+            _products.addAll(res.productDetails);
+          });
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -120,7 +210,7 @@ class _SubscriptionPlanState extends State<SubscriptionPlan> {
                   child: Stack(
                     children: [
                       ListView.builder(
-                          itemCount: 3,
+                          itemCount: _products.length,
                           physics: const NeverScrollableScrollPhysics(),
                           padding: const EdgeInsets.only(bottom: 15),
                           itemBuilder: (_, index) => GestureDetector(
@@ -136,6 +226,8 @@ class _SubscriptionPlanState extends State<SubscriptionPlan> {
                                   color: _selectedIndex == index && _selected
                                       ? appBarColor
                                       : null,
+                                  name: _products[index].id,
+                                  amount: _products[index].price,
                                 ),
                               ))),
                       _selected
@@ -143,7 +235,13 @@ class _SubscriptionPlanState extends State<SubscriptionPlan> {
                               bottom: 35,
                               left: 0,
                               right: 0,
-                              child: Button(onTap: () {}, text: 'Update Plan'))
+                              child: Button(
+                                  onTap: () {
+                                    _iapEngine.handlePurchase(
+                                        _products[_selectedIndex!],
+                                        _productIds);
+                                  },
+                                  text: 'Update Plan'))
                           : const SizedBox.shrink()
                     ],
                   )),

@@ -4,7 +4,10 @@ import 'package:language_learning/presentation/widgets/mytext.dart';
 
 class PlanCard extends StatelessWidget {
   final Color? color;
-  const PlanCard({super.key, this.color});
+  final String name;
+  final String amount;
+  const PlanCard(
+      {super.key, this.color, required this.name, required this.amount});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class PlanCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MyText(
-                  text: 'Monthly',
+                  text: name,
                   weight: FontWeight.w300,
                   color: Colors.grey,
                   fontSize: 15,
@@ -32,12 +35,20 @@ class PlanCard extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.008,
               ),
-              MyText(
-                  text: '\$12.12/Month',
-                  weight: FontWeight.w500,
-                  color: Colors.white,
-                  fontSize: 20,
-                  alignment: TextAlign.center),
+              Text(
+                amount,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                    fontSize: 20),
+              ),
+              // MyText(
+              //     text: amount,
+              //     weight: FontWeight.w500,
+              //     color: Colors.white,
+              //     fontSize: 20,
+              //     alignment: TextAlign.center),
               SizedBox(
                 height: size.height * 0.008,
               ),

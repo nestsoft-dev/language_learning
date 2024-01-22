@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:language_learning/data/utils/snack_bars.dart';
 import 'package:language_learning/presentation/auth/login.dart';
 import 'package:language_learning/presentation/auth/password_page.dart';
 import 'package:language_learning/presentation/widgets/appbar.dart';
@@ -38,10 +39,12 @@ class _RegisterPageState extends State<RegisterPage> {
               height: size.height * 0.03,
             ),
             const MyText(
-                text: 'Create an Account',
-                weight: FontWeight.w500,
-                color: Colors.white,
-                fontSize: 22, alignment: TextAlign.center,),
+              text: 'Create an Account',
+              weight: FontWeight.w500,
+              color: Colors.white,
+              fontSize: 22,
+              alignment: TextAlign.center,
+            ),
             SizedBox(
               height: size.height * 0.05,
             ),
@@ -77,8 +80,22 @@ class _RegisterPageState extends State<RegisterPage> {
               height: size.height * 0.05,
             ),
             Button(
-                onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const PasswordPage())),
+                onTap: () {
+                  if (_firstName.text.isEmpty ||
+                      _lastName.text.isEmpty ||
+                      _emailaddress.text.isEmpty) {
+                    errorSnack(
+                        context, 'Error', 'Missing fields, please details');
+                    return;
+                  } else {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => PasswordPage(
+                              firstName: _firstName.text,
+                              lastName: _lastName.text,
+                              email: _emailaddress.text.trim(),
+                            )));
+                  }
+                },
                 text: 'Continue'),
             SizedBox(
               height: size.height * 0.05,

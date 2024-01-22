@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:language_learning/presentation/nav/nav.dart';
-
-import 'onboarding_page.dart';
+import '../auth/auth_gate.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -11,7 +9,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 3000)).then((value) =>
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const OnBoardingPage())));
+            MaterialPageRoute(builder: (_) => const AuthGate())));
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(

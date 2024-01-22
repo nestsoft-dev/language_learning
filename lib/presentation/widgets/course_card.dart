@@ -6,7 +6,10 @@ import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
 class CourseCard extends StatefulWidget {
   final Color? color;
-  CourseCard({super.key, this.color});
+  final double percent;
+  final int number;
+  final String title;
+  CourseCard({super.key, this.color, required this.percent, required this.number, required this.title});
 
   @override
   State<CourseCard> createState() => _CourseCardState();
@@ -18,7 +21,7 @@ class _CourseCardState extends State<CourseCard> {
   @override
   void initState() {
     super.initState();
-    valueNotifier = ValueNotifier(75.4);
+    valueNotifier = ValueNotifier(widget.percent);
   }
 
   @override
@@ -41,7 +44,7 @@ class _CourseCardState extends State<CourseCard> {
             mergeMode: true,
             onGetText: (value) {
               return Text(
-                '${value.toInt()}/30',
+                widget.number<20?'${widget.number}/20': widget.number>20 && widget.number<50?'${widget.number}/30':'${widget.number}/40',
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -54,8 +57,8 @@ class _CourseCardState extends State<CourseCard> {
         SizedBox(
           height: size.height * 0.02,
         ),
-        const MyText(
-            text: 'German',
+         MyText(
+            text: widget.title,
             weight: FontWeight.w500,
             color: Colors.white,
             fontSize: 16,
@@ -69,9 +72,9 @@ class _CourseCardState extends State<CourseCard> {
             color: Colors.white,
             fontSize: 16,
             alignment: TextAlign.start),
-        Spacer(),
-        const MyText(
-            text: '20 Classes . Easy',
+       const Spacer(),
+         MyText(
+            text: '20 Classes .${widget.number<20?'Easy':widget.number>20 &&widget.number<50?'Medium':'Advance'}',
             weight: FontWeight.w200,
             color: Colors.grey,
             fontSize: 13,

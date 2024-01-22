@@ -1,37 +1,61 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first, use_super_parameters
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
+import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
+import 'package:translator_plus/translator_plus.dart';
+
 import 'package:language_learning/constant/constant.dart';
 import 'package:language_learning/presentation/widgets/appbar.dart';
 import 'package:language_learning/presentation/widgets/buttons.dart';
 import 'package:language_learning/presentation/widgets/linear_question.dart';
 import 'package:language_learning/presentation/widgets/mytext.dart';
-import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
-import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
 
+import '../../constant/learning_js.dart';
 import '../widgets/learning_optionbox.dart';
 
 class LearningPage extends StatefulWidget {
-  const LearningPage({super.key});
+  const LearningPage({
+    Key? key,
+    required this.language,
+    required this.lan_code,
+  }) : super(key: key);
+  final String language;
+  final String lan_code;
 
   @override
   State<LearningPage> createState() => _LearningPageState();
 }
 
 class _LearningPageState extends State<LearningPage> {
-      final _pageController = PageController(initialPage: 0);
-    @override
-    void dispose() {
-      _pageController.dispose();
-      super.dispose();
-    }
+  final _pageController = PageController(initialPage: 0);
+  int _languageProgress = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getPrevisinState();
+  }
 
-    double perval = 0.0;
-    double calculatePercent(int page) {
-      perval = page / 1000 * 30;
+  getPrevisinState() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    _languageProgress = await prefs.getInt('${widget.language}$courseNum') ?? 0;
+  }
 
-      return perval;
-    }
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  double perval = 0.0;
+  double calculatePercent(int page) {
+    perval = page / 1000 * 30;
+
+    return perval;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +67,11 @@ class _LearningPageState extends State<LearningPage> {
           Expanded(
             child: PageView.builder(
                 onPageChanged: (index) {
-                
                   setState(() {
                     calculatePercent(index);
                   });
                 },
-                itemCount: 31,
+                itemCount: english.length + 1,
                 physics: const NeverScrollableScrollPhysics(),
                 controller: _pageController,
                 itemBuilder: (_, index) {
@@ -57,6 +80,9 @@ class _LearningPageState extends State<LearningPage> {
                           controller: _pageController,
                           percentVal: calculatePercent(index),
                           pageNum: index,
+                          data: english[_languageProgress],
+                          language: widget.language,
+                          lan_code: widget.lan_code,
                         )
                       : ListView(
                           children: [

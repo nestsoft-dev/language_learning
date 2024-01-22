@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:language_learning/data/utils/functions.dart';
 import 'package:language_learning/presentation/widgets/appbar.dart';
 import 'package:language_learning/presentation/widgets/intro_list_card.dart';
 import 'package:language_learning/presentation/widgets/intro_page_six.dart';
@@ -157,6 +158,8 @@ class _IntroPageState extends State<IntroPage> {
                                                               intro_one_language[
                                                                       _selectedIndex!]
                                                                   ['lang'];
+                                                          addCourse(
+                                                              selectedLang!);
                                                         });
                                                       }
                                                       print(

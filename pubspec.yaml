@@ -49,6 +49,17 @@ dependencies:
   # share_plus: ^7.2.1
   # text_to_speech: ^0.2.3
   fl_chart: ^0.66.0
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.10
+  cloud_firestore: ^4.14.0
+  flutter_local_notifications: ^16.3.0
+  http: ^1.2.0
+  shared_preferences: ^2.2.2
+  firebase_auth: ^4.16.0
+  onepref: ^0.0.16
+  in_app_purchase: ^3.1.13
+  translator_plus: ^1.0.1
+  flutter_tts: ^3.8.5
 
 dev_dependencies:
   flutter_test:

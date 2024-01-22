@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:language_learning/data/utils/snack_bars.dart';
 import 'package:language_learning/presentation/widgets/buttons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_animation_progress_bar/simple_animation_progress_bar.dart';
+import 'package:translator_plus/translator_plus.dart';
 
 import '../../constant/constant.dart';
 
@@ -12,14 +14,20 @@ import 'learning_optionbox.dart';
 import 'mytext.dart';
 
 class LinearQuestionWidget extends StatefulWidget {
-  const LinearQuestionWidget(
+  Map<String, dynamic> data;
+  LinearQuestionWidget(
       {super.key,
       required this.controller,
       required this.percentVal,
-      required this.pageNum});
+      required this.pageNum,
+      required this.data,
+      required this.language,
+      required this.lan_code});
   final PageController controller;
   final double percentVal;
   final int pageNum;
+  final String language;
+  final String lan_code;
 
   @override
   State<LinearQuestionWidget> createState() => _LinearQuestionWidgetState();
@@ -27,6 +35,52 @@ class LinearQuestionWidget extends StatefulWidget {
 
 class _LinearQuestionWidgetState extends State<LinearQuestionWidget> {
   int? _selectedIndex;
+  var _selectedAnswer;
+  final translator = GoogleTranslator();
+
+  Future<void> checkAnser(
+      String selectedOption, String answerOption, int questionNumber) async {
+    if (selectedOption == answerOption) {
+      normalSnack(context, 'Correct answer!', 'You have answer correctly');
+      widget.controller.nextPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.linear);
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setInt('${widget.language}$courseNum', questionNumber);
+    } else {
+      errorSnack(context, 'Wrong Answer', 'Check the answer');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    translateAll(widget.pageNum);
+  }
+
+  String word = '';
+  String answer = '';
+  String? hint;
+  List<String> _options = [];
+  List<String> _image = [];
+  List<String> options = [];
+  translateAll(int page) async {
+    options = widget.data['options'];
+    options.forEach((element) async {
+      String listWord =
+          '${await translator.translate(element, to: widget.lan_code)}';
+      setState(() {
+        _options.add(listWord);
+        _image.add(element);
+      });
+    });
+
+    word =
+        '${await translator.translate(widget.data['word'], to: widget.lan_code)}';
+    answer =
+        '${await translator.translate(widget.data['answer'], to: widget.lan_code)}';
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,15 +155,19 @@ class _LinearQuestionWidgetState extends State<LinearQuestionWidget> {
             const SizedBox(
               width: 10,
             ),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MyText(
-                    text: 'jongen',
-                    weight: FontWeight.w500,
-                    color: Colors.white,
-                    fontSize: 20,
-                    alignment: TextAlign.start),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MyText(
+                      // widget.data['word']
+                      text: '$word',
+                      weight: FontWeight.w500,
+                      color: Colors.white,
+                      fontSize: 20,
+                      alignment: TextAlign.start),
+                ),
                 SizedBox(
                   width: 5,
                 ),
@@ -130,7 +188,7 @@ class _LinearQuestionWidgetState extends State<LinearQuestionWidget> {
         SizedBox(
           height: size.height * 0.52,
           child: GridView.builder(
-              itemCount: 4,
+              itemCount: _options.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -139,34 +197,41 @@ class _LinearQuestionWidgetState extends State<LinearQuestionWidget> {
                     onTap: () {
                       setState(() {
                         _selectedIndex = index;
+                        _selectedAnswer = _options[_selectedIndex!];
                       });
+                      print('Selected answer: ' + _selectedAnswer);
+                      print('Answer:' + widget.data['answer']);
                     },
                     child: LearningOptionBox(
-                        color: _selectedIndex == index ? timerColor : null,
-                        imagePath: 'assets/italy.png',
-                        text: 'italy'),
+                        color: _selectedIndex == index
+                            ? _selectedAnswer == answer //widget.data['answer']
+                                ? timerColor
+                                : Colors.red
+                            : null,
+                        imagePath: 'assets/${_image[index]}.png',
+                        //widget.data['options'][index]
+                        text: _selectedAnswer == answer ? _options[index] : ''),
                   )),
         ),
         SizedBox(
           height: size.height * 0.1,
-          child: const Center(
-            child: MyText(
-                text: 'This is the hint of what the image means',
-                weight: FontWeight.w200,
-                color: Colors.grey,
-                fontSize: 15,
-                alignment: TextAlign.start),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: MyText(
+                  text:
+                      'This is the hint of what the image means ${widget.data['hint']}',
+                  weight: FontWeight.w200,
+                  color: Colors.grey,
+                  fontSize: 15,
+                  alignment: TextAlign.start),
+            ),
           ),
         ),
         _selectedIndex != null
             ? Button(
-                onTap: () {
-                  normalSnack(
-                      context, 'Correct answer!', 'You have answer correctly');
-                  widget.controller.nextPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.linear);
-                },
+                onTap: () => checkAnser(
+                    _selectedAnswer as String, answer, widget.pageNum),
                 text: 'Submit')
             : const SizedBox.shrink()
       ],

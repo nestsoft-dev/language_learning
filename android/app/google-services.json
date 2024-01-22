@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "790625574666",
+    "project_id": "lanligo-e64a3",
+    "storage_bucket": "lanligo-e64a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790625574666:android:0fb2f0cbb31e1b700e64f3",
+        "android_client_info": {
+          "package_name": "com.enginesos.language.language_learning"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmEDGxmsWrofa_9Ec2F393Pqumqv7QrQs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,6 +3,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:language_learning/presentation/screens/checks.dart';
 import 'package:language_learning/presentation/screens/home.dart';
+import 'package:language_learning/presentation/screens/langauge_translator.dart';
 import 'package:language_learning/presentation/screens/profile.dart';
 import 'package:language_learning/presentation/screens/stats.dart';
 
@@ -23,7 +24,10 @@ class _NavPageState extends State<NavPage> {
     });
   }
 
-  List<Widget> _screens = [HomePage(), CheckPage(), StatsPage(), ProfilePage()];
+  final List<Widget> _screens = [
+    const HomePage(), const LanguageTranslatorPage(), // CheckPage(),
+    const StatsPage(), const ProfilePage()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +52,7 @@ class _NavPageState extends State<NavPage> {
                 ),
                 GButton(
                   icon: Iconsax.check,
-                  text: 'Tasks',
+                  text: 'Translate',
                 ),
                 GButton(
                   icon: Iconsax.status,
